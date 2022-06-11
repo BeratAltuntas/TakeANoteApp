@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -164,19 +165,119 @@
                     <view key="view" contentMode="scaleToFill" id="Xm3-Ji-xod">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBT-5g-Oij">
+                                <rect key="frame" x="20" y="70" width="374" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7s-of-QXr" userLabel="Back">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="069-i2-oSB"/>
+                                            <constraint firstAttribute="height" constant="50" id="hd2-f1-MbP"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                <hierarchicalColors>
+                                                    <color systemColor="labelColor"/>
+                                                    <color systemColor="secondaryLabelColor"/>
+                                                    <color systemColor="tertiaryLabelColor"/>
+                                                </hierarchicalColors>
+                                            </imageReference>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="19" scale="default" weight="bold"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2V6-b8-ry3" userLabel="Save">
+                                        <rect key="frame" x="324" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="JaS-JY-Bjo"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="" imagePadding="0.0">
+                                            <imageReference key="image" image="checkmark" catalog="system" symbolScale="large" renderingMode="hierarchical">
+                                                <hierarchicalColors>
+                                                    <color red="0.38431372549999998" green="0.45098039220000002" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color systemColor="secondaryLabelColor"/>
+                                                    <color systemColor="tertiaryLabelColor"/>
+                                                </hierarchicalColors>
+                                            </imageReference>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="18" scale="medium" weight="bold"/>
+                                            <color key="baseForegroundColor" red="0.38431372549999998" green="0.45098039220000002" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="G7s-of-QXr" firstAttribute="height" secondItem="2V6-b8-ry3" secondAttribute="height" id="2MS-Av-Bhh"/>
+                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="bottom" secondItem="G7s-of-QXr" secondAttribute="bottom" id="7kf-Rp-MYX"/>
+                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="G7s-of-QXr" secondAttribute="trailing" constant="274" id="EBM-Z7-HzZ"/>
+                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="top" secondItem="G7s-of-QXr" secondAttribute="top" id="Fvb-2C-GLE"/>
+                                    <constraint firstAttribute="height" constant="50" id="J6w-nE-xLa"/>
+                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="width" secondItem="G7s-of-QXr" secondAttribute="width" id="TTp-eR-yhS"/>
+                                    <constraint firstItem="G7s-of-QXr" firstAttribute="top" secondItem="mBT-5g-Oij" secondAttribute="top" id="Zqq-YF-lnR"/>
+                                    <constraint firstAttribute="trailing" secondItem="2V6-b8-ry3" secondAttribute="trailing" id="i7j-By-HsV"/>
+                                    <constraint firstItem="G7s-of-QXr" firstAttribute="leading" secondItem="mBT-5g-Oij" secondAttribute="leading" id="sCQ-gq-yEF"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Not Başlığı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hmo-LJ-19h">
+                                <rect key="frame" x="20" y="140" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11 Haziran 2022, 15:34 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jef-4D-vHB">
+                                <rect key="frame" x="20" y="184" width="374" height="15.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QU5-BB-A0l">
+                                <rect key="frame" x="20" y="209.5" width="374" height="632.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eCL-cY-mME"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Hmo-LJ-19h" firstAttribute="top" secondItem="mBT-5g-Oij" secondAttribute="bottom" constant="20" id="9gy-zR-HKP"/>
+                            <constraint firstItem="QU5-BB-A0l" firstAttribute="top" secondItem="jef-4D-vHB" secondAttribute="bottom" constant="10" id="BJb-ha-KHh"/>
+                            <constraint firstItem="mBT-5g-Oij" firstAttribute="leading" secondItem="eCL-cY-mME" secondAttribute="leading" constant="20" id="CKO-As-hFy"/>
+                            <constraint firstItem="jef-4D-vHB" firstAttribute="trailing" secondItem="Hmo-LJ-19h" secondAttribute="trailing" id="D2B-Mk-lm9"/>
+                            <constraint firstItem="jef-4D-vHB" firstAttribute="top" secondItem="Hmo-LJ-19h" secondAttribute="bottom" constant="10" id="DAt-4r-yh2"/>
+                            <constraint firstItem="QU5-BB-A0l" firstAttribute="leading" secondItem="eCL-cY-mME" secondAttribute="leading" constant="20" id="DW7-GV-dBW"/>
+                            <constraint firstItem="jef-4D-vHB" firstAttribute="leading" secondItem="Hmo-LJ-19h" secondAttribute="leading" id="GmQ-I1-Xab"/>
+                            <constraint firstItem="mBT-5g-Oij" firstAttribute="top" secondItem="eCL-cY-mME" secondAttribute="top" constant="26" id="NDW-SO-k6l"/>
+                            <constraint firstItem="eCL-cY-mME" firstAttribute="trailing" secondItem="QU5-BB-A0l" secondAttribute="trailing" constant="20" id="iOT-i2-FNX"/>
+                            <constraint firstItem="Hmo-LJ-19h" firstAttribute="trailing" secondItem="mBT-5g-Oij" secondAttribute="trailing" id="jmM-Ch-da9"/>
+                            <constraint firstItem="eCL-cY-mME" firstAttribute="bottom" secondItem="QU5-BB-A0l" secondAttribute="bottom" constant="20" id="yFe-tS-Vkc"/>
+                            <constraint firstItem="Hmo-LJ-19h" firstAttribute="leading" secondItem="mBT-5g-Oij" secondAttribute="leading" id="yRE-Mu-oBm"/>
+                            <constraint firstItem="eCL-cY-mME" firstAttribute="trailing" secondItem="mBT-5g-Oij" secondAttribute="trailing" constant="20" id="z3B-J1-coU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uDR-nS-zOW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dr3-Rg-R2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="124"/>
+            <point key="canvasLocation" x="989.85507246376824" y="123.88392857142857"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
