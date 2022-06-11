@@ -18,9 +18,16 @@ final class NoteDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+	@IBAction func TurnBackPage_TUI(_ sender: Any) {
+		DissmissThePage()
+	}
 }
 
 // MARK: - Extension: NoteDetailViewModelDelegate
 extension NoteDetailViewController: NoteDetailViewModelDelegate {
-	
+	func DissmissThePage() {
+		DispatchQueue.main.async { [weak self] in
+			self?.dismiss(animated: true)
+		}
+	}
 }
