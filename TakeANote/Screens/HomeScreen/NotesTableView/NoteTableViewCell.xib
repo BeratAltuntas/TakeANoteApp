@@ -59,6 +59,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imageViewKindOfNote" destination="3P7-9B-Kxd" id="xUR-vX-9uo"/>
+                <outlet property="labelNoteShortDesc" destination="ca0-LO-jMV" id="0Qa-IU-Dvn"/>
+                <outlet property="labelTakingNoteDate" destination="l9Y-7z-d0b" id="PJT-W5-5LY"/>
+                <outlet property="labelTitle" destination="hWn-4F-HpD" id="ibO-FI-fk7"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </tableViewCell>
     </objects>

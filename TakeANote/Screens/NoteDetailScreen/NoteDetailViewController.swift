@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: -
+// MARK: - NoteDetailViewController
 final class NoteDetailViewController: UIViewController {
 	
 	internal var viewModel: NoteDetailViewModelProtocol! {
@@ -20,7 +20,7 @@ final class NoteDetailViewController: UIViewController {
     }
 }
 
-// MARK: -
+// MARK: - Extension: NoteDetailViewModelDelegate
 extension NoteDetailViewController: NoteDetailViewModelDelegate {
 	
 }

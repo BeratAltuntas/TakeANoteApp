@@ -90,45 +90,88 @@
                                 </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sek-Da-FT4">
-                                <rect key="frame" x="20" y="227" width="374" height="615"/>
+                                <rect key="frame" x="20" y="227" width="374" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IpM-tE-8hW">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IpM-tE-8hW" id="boe-bh-ZeN">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="yeS-Tn-HIe"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TGR-uB-Z8a"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rM-OO-lr6">
+                                <rect key="frame" x="250" y="797" width="129" height="50"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="+">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="22" name="Helvetica-Bold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="14" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Not Oluştur">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseBackgroundColor" red="0.38431372549019605" green="0.45098039215686275" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="oCa-SO-IXH" kind="show" id="4Ik-eB-FgU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0rM-OO-lr6" firstAttribute="top" secondItem="sek-Da-FT4" secondAttribute="bottom" constant="-65" id="2hm-hW-7Pb"/>
+                            <constraint firstItem="0rM-OO-lr6" firstAttribute="leading" secondItem="sek-Da-FT4" secondAttribute="leading" constant="230" id="8dH-LK-eKG"/>
                             <constraint firstItem="sek-Da-FT4" firstAttribute="top" secondItem="aTm-Nf-oUX" secondAttribute="bottom" constant="20" id="AaF-c3-Gfd"/>
                             <constraint firstItem="Fkw-Zg-rHz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="BlF-Pd-REN"/>
                             <constraint firstItem="aTm-Nf-oUX" firstAttribute="top" secondItem="nqz-Nz-NI0" secondAttribute="bottom" constant="5" id="GGb-OL-Orp"/>
+                            <constraint firstItem="0rM-OO-lr6" firstAttribute="bottom" secondItem="sek-Da-FT4" secondAttribute="bottom" constant="-15" id="KNf-YA-BAw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nqz-Nz-NI0" secondAttribute="trailing" constant="20" id="LMs-1L-tTa"/>
                             <constraint firstItem="nqz-Nz-NI0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="PmG-tv-1Xr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sek-Da-FT4" secondAttribute="trailing" constant="20" id="Wg3-o0-pVA"/>
+                            <constraint firstItem="0rM-OO-lr6" firstAttribute="trailing" secondItem="sek-Da-FT4" secondAttribute="trailing" constant="-15" id="Ykc-fJ-QmH"/>
                             <constraint firstItem="aTm-Nf-oUX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="f3V-lN-tWu"/>
                             <constraint firstItem="Fkw-Zg-rHz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="l36-31-Z2s"/>
                             <constraint firstItem="nqz-Nz-NI0" firstAttribute="top" secondItem="Fkw-Zg-rHz" secondAttribute="bottom" constant="10" id="nnM-Hy-lFi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aTm-Nf-oUX" secondAttribute="trailing" id="s5j-xr-3xi"/>
                             <constraint firstItem="sek-Da-FT4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sOl-Rx-7WS"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sek-Da-FT4" secondAttribute="bottom" constant="20" id="vRs-bA-ers"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="sek-Da-FT4" secondAttribute="bottom" id="vRs-bA-ers"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </scene>
+        <!--Note Detail View Controller-->
+        <scene sceneID="xSy-5a-Dd5">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="oCa-SO-IXH" customClass="NoteDetailViewController" customModule="TakeANote" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xm3-Ji-xod">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="eCL-cY-mME"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uDR-nS-zOW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dr3-Rg-R2E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="124"/>
         </scene>
     </scenes>
     <resources>

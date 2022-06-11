@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: -
+// MARK: - HomeViewController
 final class HomeViewController: UIViewController {
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
 	}
 }
 
-// MARK: -
+// MARK: - Extension: HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
 	
 }
