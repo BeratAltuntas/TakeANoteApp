@@ -10,6 +10,9 @@ import UIKit
 // MARK: - NoteDetailViewController
 final class NoteDetailViewController: UIViewController {
 	
+	@IBOutlet private weak var textFieldNoteTitle: UITextField!
+	@IBOutlet private weak var labelNoteDate: UILabel!
+	@IBOutlet private weak var textViewNote: UITextView!
 	internal var viewModel: NoteDetailViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
@@ -20,6 +23,8 @@ final class NoteDetailViewController: UIViewController {
     }
 	@IBAction func TurnBackPage_TUI(_ sender: Any) {
 		DissmissThePage()
+	}
+	@IBAction func SaveNote_TUI(_ sender: Any) {
 	}
 }
 

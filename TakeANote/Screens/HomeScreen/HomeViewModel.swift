@@ -16,6 +16,7 @@ protocol HomeViewModelProtocol {
 // MARK: - HomeViewModelDelegate
 protocol HomeViewModelDelegate: AnyObject {
 	func LoadCells()
+	func ReloadCollectionView(inMain: Bool)
 }
 
 // MARK: - HomeViewModel

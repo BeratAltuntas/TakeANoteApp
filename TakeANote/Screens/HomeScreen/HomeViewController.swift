@@ -50,6 +50,11 @@ extension HomeViewController: HomeViewModelDelegate {
 		collectionViewNoteTypes.register(UINib(nibName: HomeViewControllerConstants.collectionViewNibName, bundle: nil), forCellWithReuseIdentifier: HomeViewControllerConstants.collectionViewCellId)
 		tableViewNotes.register(UINib(nibName: HomeViewControllerConstants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: HomeViewControllerConstants.tableViewCellId)
 	}
+	func ReloadCollectionView(inMain: Bool) {
+		DispatchQueue.main.async { [weak self] in
+			self?.collectionViewNoteTypes.reloadData()
+		}
+	}
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -64,7 +69,6 @@ extension HomeViewController: UITableViewDataSource {
 	
 }
 extension HomeViewController: UITableViewDelegate {
-	
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -78,18 +82,13 @@ extension HomeViewController: UICollectionViewDataSource {
 			cell.backgroundColor = UIColor(named: HomeViewControllerConstants.appPurpleColor)
 			cell.layer.cornerRadius = 15
 			cell.layer.masksToBounds = true
-
 		}
 		return cell
-		
 	}
-	
-	
 }
 extension HomeViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		selectedNoteType = indexPath.row
-		collectionViewNoteTypes.reloadData()
-
+		ReloadCollectionView(inMain: false)
 	}
 }
