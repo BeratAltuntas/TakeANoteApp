@@ -10,14 +10,17 @@ import UIKit
 enum HomeViewControllerConstants {
 	static let appPurpleColor = "AppPurpleColor"
 	static let notePageSegueId = "CreateNoteSegue"
+	static let noteTypes = ["Bütün Notlar", "Metin", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
+	static let noteTypeImageNames = ["Metin":"text.viewfinder", "Hatırlatıcı":"bell", "Ses":"music.note", "Görüntü":"photo.on.rectangle.angled", "Belge":"doc"]
+}
+enum UIConstants {
 	static let collectionViewNibName = "NoteTypesCollectionViewCell"
 	static let collectionViewCellId = "CollectionViewNoteTypes"
 	static let tableViewCellHeight: CGFloat = 120
 	static let tableViewCellNibName = "NoteTableViewCell"
 	static let tableViewCellId = "NoteTableViewCell"
-	static let noteTypes = ["Bütün Notlar", "Metin", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
-	static let noteTypeImageNames = ["Metin":"text.viewfinder", "Hatırlatıcı":"bell", "Ses":"music.note", "Görüntü":"photo.on.rectangle.angled", "Belge":"doc"]
 }
+
 // MARK: - HomeViewController
 final class HomeViewController: UIViewController {
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -30,7 +33,7 @@ final class HomeViewController: UIViewController {
 		}
 	}
 	
-	private var selectedNoteType = 0
+	var selectedNoteType: Int = .zero
 	private var selectedNote = -1
 	
 	override func viewDidLoad() {
@@ -56,14 +59,16 @@ final class HomeViewController: UIViewController {
 	@IBAction func CreateNote_TUI(_ sender: Any) {
 		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
 	}
+	
 }
 
 // MARK: - Extension: HomeViewModelDelegate
 extension HomeViewController: HomeViewModelDelegate {
+	
 	func SetupCells() {
-		collectionViewNoteTypes.register(UINib(nibName: HomeViewControllerConstants.collectionViewNibName, bundle: nil), forCellWithReuseIdentifier: HomeViewControllerConstants.collectionViewCellId)
-		tableViewNotes.register(UINib(nibName: HomeViewControllerConstants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: HomeViewControllerConstants.tableViewCellId)
-		tableViewNotes.estimatedRowHeight = HomeViewControllerConstants.tableViewCellHeight
+		collectionViewNoteTypes.register(UINib(nibName: UIConstants.collectionViewNibName, bundle: nil), forCellWithReuseIdentifier: UIConstants.collectionViewCellId)
+		tableViewNotes.register(UINib(nibName: UIConstants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: UIConstants.tableViewCellId)
+		tableViewNotes.estimatedRowHeight = UIConstants.tableViewCellHeight
 		tableViewNotes.rowHeight = UITableView.automaticDimension
 
 	}
@@ -83,10 +88,10 @@ extension HomeViewController: HomeViewModelDelegate {
 
 // MARK: - Extension: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.notes?.count ?? 0 }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.notes?.count ?? .zero }
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: HomeViewControllerConstants.tableViewCellId, for: indexPath)as! NoteTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.tableViewCellId, for: indexPath)as! NoteTableViewCell
 		cell.labelTitle.text = viewModel.notes?[indexPath.row].noteTitle
 		cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteLastEditDate
 		cell.labelNoteShortDesc.text = viewModel.notes?[indexPath.row].noteText
@@ -121,7 +126,7 @@ extension HomeViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { HomeViewControllerConstants.noteTypes.count }
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewControllerConstants.collectionViewCellId, for: indexPath) as! NoteTypesCollectionViewCell
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UIConstants.collectionViewCellId, for: indexPath) as! NoteTypesCollectionViewCell
 		cell.labelTitle.text = HomeViewControllerConstants.noteTypes[indexPath.row]
 		cell.backgroundColor = .systemBackground
 		if indexPath.row == selectedNoteType {
@@ -137,7 +142,19 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		selectedNoteType = indexPath.row
-		viewModel.GetNotes(byCategory: HomeViewControllerConstants.noteTypeImageNames[HomeViewControllerConstants.noteTypes[selectedNoteType]] ?? HomeViewControllerConstants.noteTypes.first!)
+		viewModel.FetchNotes(byCategory: HomeViewControllerConstants.noteTypeImageNames[HomeViewControllerConstants.noteTypes[selectedNoteType]] ?? HomeViewControllerConstants.noteTypes.first!)
 		ReloadCollectionView()
+	}
+}
+
+extension HomeViewController: UISearchBarDelegate {
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		viewModel.FetchNotes(byText: searchText.lowercased())
+	}
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		searchBar.text = .none
+		selectedNoteType = .zero
+		viewModel.UpdateNotes()
+		searchBar.endEditing(true)
 	}
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 struct Note {
-	var noteId: Int?
 	var noteTitle: String?
 	var noteText: String?
 	var noteCategory: String?

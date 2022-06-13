@@ -14,11 +14,14 @@ protocol HomeViewModelProtocol {
 	func LoadUI()
 	func UpdateNotes()
 	func Delete(note: NoteEntity)
-	func GetNotes(byCategory: String)
+	func FetchNotes(byCategory: String)
+	func FetchNotes(byText: String)
 }
 
 // MARK: - HomeViewModelDelegate
 protocol HomeViewModelDelegate: AnyObject {
+	var selectedNoteType: Int { get set }
+	
 	func SetupCells()
 	func ReloadCollectionView()
 	func ReloadTableView()
@@ -48,12 +51,23 @@ extension HomeViewModel: HomeViewModelProtocol {
 		UpdateNotes()
 	}
 	
-	func GetNotes(byCategory: String) {
-		if byCategory == HomeViewControllerConstants.noteTypes[0] {
+	func FetchNotes(byCategory: String) {
+		if byCategory == HomeViewControllerConstants.noteTypes.first {
 			UpdateNotes()
 		} else {
-		notes = CoreDataManager.shared.GetNotesBy(categoryFilter: byCategory)
+			notes = CoreDataManager.shared.GetNotesBy(categoryFilter: byCategory)
 			delegate?.ReloadTableView()
 		}
+	}
+	
+	func FetchNotes(byText: String) {
+		if byText.isEmpty {
+			delegate?.selectedNoteType = .zero
+			delegate?.ReloadCollectionView()
+			UpdateNotes()
+		} else {
+			notes = CoreDataManager.shared.GetNotesBy(text: byText)
+		}
+		delegate?.ReloadTableView()
 	}
 }
