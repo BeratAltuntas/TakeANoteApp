@@ -34,7 +34,8 @@ class CoreDataManager {
 	func GetNotes()-> [NoteEntity] {
 		let fetchRequest : NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
 		do{
-			let notes = try GetContext().fetch(fetchRequest)
+			var notes = try GetContext().fetch(fetchRequest)
+			notes = notes.reversed()
 			return notes
 		}
 		catch{

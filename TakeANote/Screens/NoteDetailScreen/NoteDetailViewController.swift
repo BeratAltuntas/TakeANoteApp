@@ -21,10 +21,21 @@ final class NoteDetailViewController: UIViewController {
 	}
 	
 	var selectedNote: NoteEntity?
-	
+	override func viewDidLoad() {
+		let optionsClosure = { (action: UIAction) in
+			print(action.title)
+		}
+		pickerButtonNoteCategory.menu = UIMenu(children: [
+			UIAction(title: "Metin", state: .on, handler: optionsClosure),
+			UIAction(title: "Hatırlatıcı", handler: optionsClosure),
+			UIAction(title: "Ses", handler: optionsClosure),
+			UIAction(title: "Görüntü", handler: optionsClosure),
+			UIAction(title: "Belge", handler: optionsClosure)
+		])
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		labelNoteDate.text = DateFormatter().DateFormatNowTR()
-		if let selectedNote = selectedNote {
+		if selectedNote != nil {
 			LoadSelectedNote()
 		}
 	}

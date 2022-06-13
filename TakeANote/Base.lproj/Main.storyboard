@@ -7,7 +7,6 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -183,15 +182,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIR-qj-TRm">
                                         <rect key="frame" x="120" y="0.0" width="134" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <menu key="menu" id="M8O-g3-SdB">
-                                            <children>
-                                                <command title="Metin" id="80o-xj-q3K"/>
-                                                <command title="Hatırlatıcı" id="w6p-IL-UE4"/>
-                                                <command title="Ses" id="7Q0-uL-2Wg"/>
-                                                <command title="Görüntü" id="VsI-Mr-2cB"/>
-                                                <command title="Belge" id="Wd4-eU-qE8"/>
-                                            </children>
-                                        </menu>
                                         <state key="normal" title="Kategori Seç">
                                             <color key="titleColor" name="AppPurpleColor"/>
                                         </state>
