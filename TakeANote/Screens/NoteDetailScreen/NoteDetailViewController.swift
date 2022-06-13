@@ -20,8 +20,20 @@ final class NoteDetailViewController: UIViewController {
 		}
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	var selectedNote: NoteEntity?
+	
+	override func viewWillAppear(_ animated: Bool) {
+		labelNoteDate.text = DateFormatter().DateFormatNowTR()
+		if let selectedNote = selectedNote {
+			LoadSelectedNote()
+		}
+	}
+	
+	func LoadSelectedNote() {
+		textFieldNoteTitle.text = selectedNote!.noteTitle
+		textViewNote.text = selectedNote!.noteText!
+		pickerButtonNoteCategory.titleLabel?.text = selectedNote!.noteCategory
+		labelNoteDate.text = selectedNote!.noteCreatingDate
 	}
 	
 	@IBAction func TurnBackPage_TUI(_ sender: Any) {
@@ -29,6 +41,9 @@ final class NoteDetailViewController: UIViewController {
 	}
 	
 	@IBAction func SaveNote_TUI(_ sender: Any) {
+		if selectedNote != nil {
+			viewModel.Delete(note: selectedNote!)
+		}
 		let note = FetchNoteDetails()
 		viewModel.SaveNote(note: note)
 		DissmissThePage()
@@ -37,23 +52,12 @@ final class NoteDetailViewController: UIViewController {
 	func FetchNoteDetails()-> Note {
 		let date = DateFormatter().DateFormatNowTR()
 		let category = HomeViewControllerConstants.noteTypeImageNames[pickerButtonNoteCategory.titleLabel!.text!]
-		let noteID = CoreDataManager.shared.GetLastNoteId()
-		if noteID == -1 {
-			
-			let note = Note(noteId: 0,
-							noteTitle: textFieldNoteTitle.text!,
-							noteText: textViewNote.text,
-							noteCategory: category,
-							noteCreatingDate: date,
-							noteLastEditDate: date)
-			return note
-		}
-		let note = Note(noteId: noteID,
-						noteTitle: textFieldNoteTitle.text!,
-						noteText: textViewNote.text,
-						noteCategory: category,
-						noteCreatingDate: date,
-						noteLastEditDate: date)
+		var note = Note()
+		note.noteTitle = textFieldNoteTitle.text!
+		note.noteText = textViewNote.text!
+		note.noteCategory = category
+		note.noteCreatingDate = date
+		note.noteLastEditDate = date
 		return note
 	}
 }
@@ -67,6 +71,7 @@ extension NoteDetailViewController: NoteDetailViewModelDelegate {
 	}
 }
 
+// MARK: - Extension: DateFormatter
 extension DateFormatter {
 	func DateFormatNowTR()-> String {
 		let formatter = DateFormatter()

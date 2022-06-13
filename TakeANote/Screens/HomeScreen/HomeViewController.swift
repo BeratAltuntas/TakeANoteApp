@@ -29,8 +29,8 @@ final class HomeViewController: UIViewController {
 		}
 	}
 	
-	var selectedNoteType = 0
-	
+	private var selectedNoteType = 0
+	private var selectedNote = -1
 	override func viewDidLoad() {
 		self.viewModel = HomeViewModel()
 		super.viewDidLoad()
@@ -49,6 +49,9 @@ final class HomeViewController: UIViewController {
 		if segue.identifier == HomeViewControllerConstants.notePageSegueId {
 			let vc = segue.destination as! NoteDetailViewController
 			vc.viewModel = NoteDetailViewModel()
+			if selectedNote != -1 {
+				vc.selectedNote = viewModel.notes[selectedNote]
+			}
 		}
 	}
 }
@@ -83,17 +86,26 @@ extension HomeViewController: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: HomeViewControllerConstants.tableViewCellId, for: indexPath)as! NoteTableViewCell
 		cell.labelTitle.text = viewModel.notes?[indexPath.row].noteTitle
 		cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteCreatingDate
-		cell.labelNoteShortDesc.text = ""
+		cell.labelNoteShortDesc.text = viewModel.notes?[indexPath.row].noteText
 		if let category = viewModel.notes?[indexPath.row].noteCategory {
 			cell.imageViewKindOfNote.image = UIImage(systemName: category)
 		}
 		return cell
 	}
 	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			viewModel.Delete(note: viewModel.notes![indexPath.row])
+		}
+	}
 }
 
 // MARK: - Extension: UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		selectedNote = indexPath.row
+		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
+	}
 }
 
 // MARK: - Extension: UICollectionViewDataSource

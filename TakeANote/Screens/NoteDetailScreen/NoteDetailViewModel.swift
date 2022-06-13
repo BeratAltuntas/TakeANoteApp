@@ -11,6 +11,7 @@ import Foundation
 protocol NoteDetailViewModelProtocol {
 	var delegate: NoteDetailViewModelDelegate? { get set }
 	func SaveNote(note: Note)
+	func Delete(note: NoteEntity)
 }
 
 // MARK: - NoteDetailViewModelDelegate
@@ -28,5 +29,9 @@ extension NoteDetailViewModel: NoteDetailViewModelProtocol {
 	func SaveNote(note: Note) {
 		let context = CoreDataManager.shared.GetContext()
 		CoreDataManager.shared.SaveEntity(context: context, note: note)
+	}
+	
+	func Delete(note: NoteEntity) {
+		CoreDataManager.shared.DeleteNote(note: note)
 	}
 }

@@ -10,9 +10,10 @@ import Foundation
 // MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
 	var delegate: HomeViewModelDelegate? { get set }
-	var notes: [Note]? { get }
+	var notes: [NoteEntity]! { get }
 	func LoadUI()
 	func UpdateNotes()
+	func Delete(note: NoteEntity)
 }
 
 // MARK: - HomeViewModelDelegate
@@ -25,7 +26,7 @@ protocol HomeViewModelDelegate: AnyObject {
 // MARK: - HomeViewModel
 final class HomeViewModel {
 	weak var delegate: HomeViewModelDelegate?
-	var notes: [Note]?
+	var notes: [NoteEntity]!
 }
 
 // MARK: - Extension: HomeViewModelProtocol
@@ -35,7 +36,13 @@ extension HomeViewModel: HomeViewModelProtocol {
 	}
 	
 	func UpdateNotes() {
+		notes?.removeAll()
 		notes = CoreDataManager.shared.GetNotes()
 		delegate?.ReloadTableView()
+	}
+	
+	func Delete(note: NoteEntity) {
+		CoreDataManager.shared.DeleteNote(note: note)
+		UpdateNotes()
 	}
 }
