@@ -65,6 +65,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		F42313882857721C0060F388 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F40CB41D2857381100E27A2D /* Note.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F461EC5828546DDB00D44F4A = {
 			isa = PBXGroup;
 			children = (
@@ -84,13 +92,13 @@
 		F461EC6328546DDB00D44F4A /* TakeANote */ = {
 			isa = PBXGroup;
 			children = (
+				F42313882857721C0060F388 /* Models */,
 				F40CB4192857371E00E27A2D /* Managers */,
 				F461EC8028546F2F00D44F4A /* Views */,
-				F461EC7F28546F1D00D44F4A /* SupportingFiles */,
 				F461EC7C28546EE000D44F4A /* Screens */,
 				F461EC7528546DDD00D44F4A /* Info.plist */,
+				F461EC7F28546F1D00D44F4A /* SupportingFiles */,
 				F461EC6D28546DDB00D44F4A /* TakeANote.xcdatamodeld */,
-				F40CB41D2857381100E27A2D /* Note.swift */,
 			);
 			path = TakeANote;
 			sourceTree = "<group>";

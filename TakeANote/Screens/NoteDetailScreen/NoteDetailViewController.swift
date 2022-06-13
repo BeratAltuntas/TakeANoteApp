@@ -14,33 +14,44 @@ final class NoteDetailViewController: UIViewController {
 	@IBOutlet private weak var pickerButtonNoteCategory: UIButton!
 	@IBOutlet private weak var labelNoteDate: UILabel!
 	@IBOutlet private weak var textViewNote: UITextView!
-	internal var viewModel: NoteDetailViewModelProtocol! {
+	var viewModel: NoteDetailViewModelProtocol! {
 		didSet {
 			viewModel.delegate = self
 		}
 	}
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+	}
+	
 	@IBAction func TurnBackPage_TUI(_ sender: Any) {
 		DissmissThePage()
 	}
-	@IBAction func SaveNote_TUI(_ sender: Any) {
-		let note = GetNoteDetails()
-		viewModel.SaveNote(note: note)
-	}
-	func GetNoteDetails()-> Note {
-		let formatter = DateFormatter()
-		formatter.locale = Locale(identifier: "tr_TR")
-		formatter.dateFormat = "dd MMMM YYYY HH:mm"
-		let date = formatter.string(from:  Date())
-
-		
 	
-		let note = Note(noteId: 11,
+	@IBAction func SaveNote_TUI(_ sender: Any) {
+		let note = FetchNoteDetails()
+		viewModel.SaveNote(note: note)
+		DissmissThePage()
+	}
+	
+	func FetchNoteDetails()-> Note {
+		let date = DateFormatter().DateFormatNowTR()
+		let category = HomeViewControllerConstants.noteTypeImageNames[pickerButtonNoteCategory.titleLabel!.text!]
+		let noteID = CoreDataManager.shared.GetLastNoteId()
+		if noteID == -1 {
+			
+			let note = Note(noteId: 0,
+							noteTitle: textFieldNoteTitle.text!,
+							noteText: textViewNote.text,
+							noteCategory: category,
+							noteCreatingDate: date,
+							noteLastEditDate: date)
+			return note
+		}
+		let note = Note(noteId: noteID,
 						noteTitle: textFieldNoteTitle.text!,
 						noteText: textViewNote.text,
-						noteCategory: pickerButtonNoteCategory.currentTitle!,
+						noteCategory: category,
 						noteCreatingDate: date,
 						noteLastEditDate: date)
 		return note
@@ -53,5 +64,14 @@ extension NoteDetailViewController: NoteDetailViewModelDelegate {
 		DispatchQueue.main.async { [weak self] in
 			self?.dismiss(animated: true)
 		}
+	}
+}
+
+extension DateFormatter {
+	func DateFormatNowTR()-> String {
+		let formatter = DateFormatter()
+		formatter.locale = Locale(identifier: "tr_TR")
+		formatter.dateFormat = "dd MMMM YYYY HH:mm"
+		return formatter.string(from:  Date())
 	}
 }

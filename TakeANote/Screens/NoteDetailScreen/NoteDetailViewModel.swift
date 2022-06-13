@@ -21,13 +21,12 @@ protocol NoteDetailViewModelDelegate: AnyObject {
 // MARK: - NoteDetailViewModel
 final class NoteDetailViewModel {
 	weak var delegate: NoteDetailViewModelDelegate?
-
 }
 
 // MARK: - Extension: NoteDetailViewModelProtocol
 extension NoteDetailViewModel: NoteDetailViewModelProtocol {
 	func SaveNote(note: Note) {
-		let context = CoreDataManager.shared.getContext()
-		CoreDataManager.shared.SaveContext(context: context, note: note)
+		let context = CoreDataManager.shared.GetContext()
+		CoreDataManager.shared.SaveEntity(context: context, note: note)
 	}
 }

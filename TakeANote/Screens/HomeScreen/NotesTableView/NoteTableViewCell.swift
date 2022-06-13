@@ -9,10 +9,10 @@ import UIKit
 
 class NoteTableViewCell: UITableViewCell {
 
-	@IBOutlet private weak var imageViewKindOfNote: UIImageView!
-	@IBOutlet private weak var labelTitle: UILabel!
-	@IBOutlet private weak var labelTakingNoteDate: UILabel!
-	@IBOutlet private weak var labelNoteShortDesc: UILabel!
+	@IBOutlet weak var imageViewKindOfNote: UIImageView!
+	@IBOutlet weak var labelTitle: UILabel!
+	@IBOutlet weak var labelCreatingNoteDate: UILabel!
+	@IBOutlet weak var labelNoteShortDesc: UILabel!
 	override func awakeFromNib() {
         super.awakeFromNib()
     }

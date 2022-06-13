@@ -10,23 +10,32 @@ import Foundation
 // MARK: - HomeViewModelProtocol
 protocol HomeViewModelProtocol {
 	var delegate: HomeViewModelDelegate? { get set }
+	var notes: [Note]? { get }
 	func LoadUI()
+	func UpdateNotes()
 }
 
 // MARK: - HomeViewModelDelegate
 protocol HomeViewModelDelegate: AnyObject {
-	func LoadCells()
-	func ReloadCollectionView(inMain: Bool)
+	func SetupCells()
+	func ReloadCollectionView()
+	func ReloadTableView()
 }
 
 // MARK: - HomeViewModel
 final class HomeViewModel {
 	weak var delegate: HomeViewModelDelegate?
+	var notes: [Note]?
 }
 
 // MARK: - Extension: HomeViewModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
 	func LoadUI() {
-		delegate?.LoadCells()
+		delegate?.SetupCells()
+	}
+	
+	func UpdateNotes() {
+		notes = CoreDataManager.shared.GetNotes()
+		delegate?.ReloadTableView()
 	}
 }
