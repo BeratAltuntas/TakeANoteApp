@@ -4,7 +4,7 @@
         <attribute name="noteCategory" optional="YES" attributeType="String"/>
         <attribute name="noteCreatingDate" optional="YES" attributeType="String"/>
         <attribute name="noteId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="noteLastEditDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="noteLastEditDate" optional="YES" attributeType="String"/>
         <attribute name="noteText" optional="YES" attributeType="String"/>
         <attribute name="noteTitle" optional="YES" attributeType="String"/>
     </entity>

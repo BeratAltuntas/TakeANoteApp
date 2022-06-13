@@ -11,6 +11,7 @@ import UIKit
 final class NoteDetailViewController: UIViewController {
 	
 	@IBOutlet private weak var textFieldNoteTitle: UITextField!
+	@IBOutlet private weak var pickerButtonNoteCategory: UIButton!
 	@IBOutlet private weak var labelNoteDate: UILabel!
 	@IBOutlet private weak var textViewNote: UITextView!
 	internal var viewModel: NoteDetailViewModelProtocol! {
@@ -25,6 +26,24 @@ final class NoteDetailViewController: UIViewController {
 		DissmissThePage()
 	}
 	@IBAction func SaveNote_TUI(_ sender: Any) {
+		let note = GetNoteDetails()
+		viewModel.SaveNote(note: note)
+	}
+	func GetNoteDetails()-> Note {
+		let formatter = DateFormatter()
+		formatter.locale = Locale(identifier: "tr_TR")
+		formatter.dateFormat = "dd MMMM YYYY HH:mm"
+		let date = formatter.string(from:  Date())
+
+		
+	
+		let note = Note(noteId: 11,
+						noteTitle: textFieldNoteTitle.text!,
+						noteText: textViewNote.text,
+						noteCategory: pickerButtonNoteCategory.currentTitle!,
+						noteCreatingDate: date,
+						noteLastEditDate: date)
+		return note
 	}
 }
 

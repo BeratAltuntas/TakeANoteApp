@@ -4,8 +4,10 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -177,18 +179,37 @@
                                             <action selector="SaveNote_TUI:" destination="oCa-SO-IXH" eventType="touchUpInside" id="Lbn-WN-sV7"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIR-qj-TRm">
+                                        <rect key="frame" x="120" y="0.0" width="134" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <menu key="menu" id="M8O-g3-SdB">
+                                            <children>
+                                                <command title="Metin" id="80o-xj-q3K"/>
+                                                <command title="Hatırlatıcı" id="w6p-IL-UE4"/>
+                                                <command title="Ses" id="7Q0-uL-2Wg"/>
+                                                <command title="Görüntü" id="VsI-Mr-2cB"/>
+                                                <command title="Belge" id="Wd4-eU-qE8"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Kategori Seç">
+                                            <color key="titleColor" name="AppPurpleColor"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="G7s-of-QXr" firstAttribute="height" secondItem="2V6-b8-ry3" secondAttribute="height" id="2MS-Av-Bhh"/>
                                     <constraint firstItem="2V6-b8-ry3" firstAttribute="bottom" secondItem="G7s-of-QXr" secondAttribute="bottom" id="7kf-Rp-MYX"/>
-                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="G7s-of-QXr" secondAttribute="trailing" constant="274" id="EBM-Z7-HzZ"/>
                                     <constraint firstItem="2V6-b8-ry3" firstAttribute="top" secondItem="G7s-of-QXr" secondAttribute="top" id="Fvb-2C-GLE"/>
                                     <constraint firstAttribute="height" constant="50" id="J6w-nE-xLa"/>
+                                    <constraint firstItem="pIR-qj-TRm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="G7s-of-QXr" secondAttribute="trailing" constant="70" id="RzN-Ph-62J"/>
                                     <constraint firstItem="2V6-b8-ry3" firstAttribute="width" secondItem="G7s-of-QXr" secondAttribute="width" id="TTp-eR-yhS"/>
+                                    <constraint firstItem="pIR-qj-TRm" firstAttribute="top" secondItem="G7s-of-QXr" secondAttribute="top" id="Vhm-9X-ASO"/>
                                     <constraint firstItem="G7s-of-QXr" firstAttribute="top" secondItem="mBT-5g-Oij" secondAttribute="top" id="Zqq-YF-lnR"/>
+                                    <constraint firstItem="pIR-qj-TRm" firstAttribute="bottom" secondItem="G7s-of-QXr" secondAttribute="bottom" id="g9Y-0Z-rhe"/>
                                     <constraint firstAttribute="trailing" secondItem="2V6-b8-ry3" secondAttribute="trailing" id="i7j-By-HsV"/>
                                     <constraint firstItem="G7s-of-QXr" firstAttribute="leading" secondItem="mBT-5g-Oij" secondAttribute="leading" id="sCQ-gq-yEF"/>
+                                    <constraint firstItem="2V6-b8-ry3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pIR-qj-TRm" secondAttribute="trailing" constant="70" id="x9Y-6G-f5d"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Not Başlığı" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hmo-LJ-19h">
@@ -232,6 +253,7 @@
                     <navigationItem key="navigationItem" id="uDR-nS-zOW"/>
                     <connections>
                         <outlet property="labelNoteDate" destination="jef-4D-vHB" id="WJN-tY-Flq"/>
+                        <outlet property="pickerButtonNoteCategory" destination="pIR-qj-TRm" id="jVV-4m-om6"/>
                         <outlet property="textFieldNoteTitle" destination="Hmo-LJ-19h" id="Zka-Fu-Ksy"/>
                         <outlet property="textViewNote" destination="QU5-BB-A0l" id="pdh-qT-8jj"/>
                     </connections>

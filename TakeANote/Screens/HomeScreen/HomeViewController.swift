@@ -14,7 +14,7 @@ enum HomeViewControllerConstants {
 	static let collectionViewCellId = "CollectionViewNoteTypes"
 	static let tableViewCellNibName = "NoteTableViewCell"
 	static let tableViewCellId = "NoteTableViewCell"
-	static let noteTypes = ["Bütün Notlar", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
+	static let noteTypes = ["Bütün Notlar", "Metin", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
 }
 // MARK: - HomeViewController
 final class HomeViewController: UIViewController {

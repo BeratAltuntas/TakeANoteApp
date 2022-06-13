@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40CB41B2857372E00E27A2D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CB41A2857372E00E27A2D /* CoreDataManager.swift */; };
+		F40CB41E2857381100E27A2D /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40CB41D2857381100E27A2D /* Note.swift */; };
 		F461EC6528546DDB00D44F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F461EC6428546DDB00D44F4A /* AppDelegate.swift */; };
 		F461EC6728546DDB00D44F4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F461EC6628546DDB00D44F4A /* SceneDelegate.swift */; };
 		F461EC6C28546DDB00D44F4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F461EC6A28546DDB00D44F4A /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F40CB41A2857372E00E27A2D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F40CB41D2857381100E27A2D /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		F461EC6128546DDB00D44F4A /* TakeANote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeANote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F461EC6428546DDB00D44F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F461EC6628546DDB00D44F4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F40CB4192857371E00E27A2D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F40CB41A2857372E00E27A2D /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		F461EC5828546DDB00D44F4A = {
 			isa = PBXGroup;
 			children = (
@@ -72,11 +84,13 @@
 		F461EC6328546DDB00D44F4A /* TakeANote */ = {
 			isa = PBXGroup;
 			children = (
+				F40CB4192857371E00E27A2D /* Managers */,
 				F461EC8028546F2F00D44F4A /* Views */,
 				F461EC7F28546F1D00D44F4A /* SupportingFiles */,
 				F461EC7C28546EE000D44F4A /* Screens */,
 				F461EC7528546DDD00D44F4A /* Info.plist */,
 				F461EC6D28546DDB00D44F4A /* TakeANote.xcdatamodeld */,
+				F40CB41D2857381100E27A2D /* Note.swift */,
 			);
 			path = TakeANote;
 			sourceTree = "<group>";
@@ -227,7 +241,9 @@
 				F461EC8E28547AE900D44F4A /* NoteTableViewCell.swift in Sources */,
 				F461EC8428546F8D00D44F4A /* HomeViewModel.swift in Sources */,
 				F461EC8828546FAE00D44F4A /* NoteDetailViewModel.swift in Sources */,
+				F40CB41E2857381100E27A2D /* Note.swift in Sources */,
 				F461EC8228546F8200D44F4A /* HomeViewController.swift in Sources */,
+				F40CB41B2857372E00E27A2D /* CoreDataManager.swift in Sources */,
 				F461EC8628546F9F00D44F4A /* NoteDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
