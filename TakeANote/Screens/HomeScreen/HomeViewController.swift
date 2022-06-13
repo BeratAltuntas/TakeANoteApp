@@ -32,6 +32,7 @@ final class HomeViewController: UIViewController {
 	
 	private var selectedNoteType = 0
 	private var selectedNote = -1
+	
 	override func viewDidLoad() {
 		self.viewModel = HomeViewModel()
 		super.viewDidLoad()
@@ -42,10 +43,6 @@ final class HomeViewController: UIViewController {
 		viewModel.UpdateNotes()
 	}
 	
-	@IBAction func CreateNote_TUI(_ sender: Any) {
-		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
-	}
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == HomeViewControllerConstants.notePageSegueId {
 			let vc = segue.destination as! NoteDetailViewController
@@ -54,6 +51,10 @@ final class HomeViewController: UIViewController {
 				vc.selectedNote = viewModel.notes[selectedNote]
 			}
 		}
+	}
+	
+	@IBAction func CreateNote_TUI(_ sender: Any) {
+		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
 	}
 }
 
@@ -82,14 +83,12 @@ extension HomeViewController: HomeViewModelDelegate {
 
 // MARK: - Extension: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return viewModel.notes?.count ?? 0
-	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.notes?.count ?? 0 }
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: HomeViewControllerConstants.tableViewCellId, for: indexPath)as! NoteTableViewCell
 		cell.labelTitle.text = viewModel.notes?[indexPath.row].noteTitle
-		cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteCreatingDate
+		cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteLastEditDate
 		cell.labelNoteShortDesc.text = viewModel.notes?[indexPath.row].noteText
 		if let category = viewModel.notes?[indexPath.row].noteCategory {
 			cell.imageViewKindOfNote.image = UIImage(systemName: category)

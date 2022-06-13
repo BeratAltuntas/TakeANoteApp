@@ -33,6 +33,7 @@ final class HomeViewModel {
 extension HomeViewModel: HomeViewModelProtocol {
 	func LoadUI() {
 		delegate?.SetupCells()
+		UpdateNotes()
 	}
 	
 	func UpdateNotes() {

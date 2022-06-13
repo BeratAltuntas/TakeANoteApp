@@ -12,6 +12,5 @@ struct Note {
 	var noteTitle: String?
 	var noteText: String?
 	var noteCategory: String?
-	var noteCreatingDate: String?
 	var noteLastEditDate: String?
 }

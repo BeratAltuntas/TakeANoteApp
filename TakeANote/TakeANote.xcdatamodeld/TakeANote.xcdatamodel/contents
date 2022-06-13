@@ -2,12 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NoteEntity" representedClassName="NoteEntity" syncable="YES" codeGenerationType="class">
         <attribute name="noteCategory" optional="YES" attributeType="String"/>
-        <attribute name="noteCreatingDate" optional="YES" attributeType="String"/>
         <attribute name="noteLastEditDate" optional="YES" attributeType="String"/>
         <attribute name="noteText" optional="YES" attributeType="String"/>
         <attribute name="noteTitle" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="NoteEntity" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="NoteEntity" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

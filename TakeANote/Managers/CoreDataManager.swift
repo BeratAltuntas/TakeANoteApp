@@ -26,7 +26,6 @@ class CoreDataManager {
 		entityNote.setValue(note.noteTitle, forKey: "noteTitle")
 		entityNote.setValue(note.noteText, forKey: "noteText")
 		entityNote.setValue(note.noteCategory, forKey: "noteCategory")
-		entityNote.setValue(note.noteCreatingDate, forKey: "noteCreatingDate")
 		entityNote.setValue(note.noteLastEditDate, forKey: "noteLastEditDate")
 		SaveContext()
 	}

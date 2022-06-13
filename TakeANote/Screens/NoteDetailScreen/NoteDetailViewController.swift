@@ -22,17 +22,9 @@ final class NoteDetailViewController: UIViewController {
 	
 	var selectedNote: NoteEntity?
 	override func viewDidLoad() {
-		let optionsClosure = { (action: UIAction) in
-			print(action.title)
-		}
-		pickerButtonNoteCategory.menu = UIMenu(children: [
-			UIAction(title: "Metin", state: .on, handler: optionsClosure),
-			UIAction(title: "Hatırlatıcı", handler: optionsClosure),
-			UIAction(title: "Ses", handler: optionsClosure),
-			UIAction(title: "Görüntü", handler: optionsClosure),
-			UIAction(title: "Belge", handler: optionsClosure)
-		])
+		viewModel.SetupUI()
 	}
+	
 	override func viewWillAppear(_ animated: Bool) {
 		labelNoteDate.text = DateFormatter().DateFormatNowTR()
 		if selectedNote != nil {
@@ -40,11 +32,40 @@ final class NoteDetailViewController: UIViewController {
 		}
 	}
 	
+	func LoadCategories() {
+		let optionsClosure = { (action: UIAction) in
+		}
+		pickerButtonNoteCategory.menu = UIMenu(children: [
+			UIAction(title: HomeViewControllerConstants.noteTypes[1], state: .on, handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[2], handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[3], handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[4], handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[5], handler: optionsClosure)
+		])
+	}
+	
+	func KeyboardNotificationCenter() {
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+	}
+	
 	func LoadSelectedNote() {
 		textFieldNoteTitle.text = selectedNote!.noteTitle
 		textViewNote.text = selectedNote!.noteText!
 		pickerButtonNoteCategory.titleLabel?.text = selectedNote!.noteCategory
-		labelNoteDate.text = selectedNote!.noteCreatingDate
+		labelNoteDate.text = selectedNote!.noteLastEditDate
+	}
+	
+	func GetUITexts()-> Note {
+		let date = DateFormatter().DateFormatNowTR()
+		let category = HomeViewControllerConstants.noteTypeImageNames[pickerButtonNoteCategory.titleLabel!.text!]
+		var note = Note()
+		note.noteTitle = textFieldNoteTitle.text!
+		note.noteText = textViewNote.text!
+		note.noteCategory = category
+		note.noteLastEditDate = date
+		return note
 	}
 	
 	@IBAction func TurnBackPage_TUI(_ sender: Any) {
@@ -55,21 +76,25 @@ final class NoteDetailViewController: UIViewController {
 		if selectedNote != nil {
 			viewModel.Delete(note: selectedNote!)
 		}
-		let note = FetchNoteDetails()
+		let note = GetUITexts()
 		viewModel.SaveNote(note: note)
 		DissmissThePage()
 	}
 	
-	func FetchNoteDetails()-> Note {
-		let date = DateFormatter().DateFormatNowTR()
-		let category = HomeViewControllerConstants.noteTypeImageNames[pickerButtonNoteCategory.titleLabel!.text!]
-		var note = Note()
-		note.noteTitle = textFieldNoteTitle.text!
-		note.noteText = textViewNote.text!
-		note.noteCategory = category
-		note.noteCreatingDate = date
-		note.noteLastEditDate = date
-		return note
+	@objc func adjustForKeyboard(notification: Notification) {
+		guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+		let keyboardScreenEnd = keyboardValue.cgRectValue
+		let keyboardViewEndFrame = view.convert(keyboardScreenEnd, to: view.window)
+		
+		if notification.name == UIResponder.keyboardWillHideNotification{
+			textViewNote.contentInset = .zero
+		}else{
+			
+			textViewNote.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height  - view.safeAreaInsets.bottom, right: 0)
+		}
+		textViewNote.scrollIndicatorInsets = textViewNote.contentInset
+		let selectedRange = textViewNote.selectedRange
+		textViewNote.scrollRangeToVisible(selectedRange)
 	}
 }
 
@@ -80,6 +105,12 @@ extension NoteDetailViewController: NoteDetailViewModelDelegate {
 			self?.dismiss(animated: true)
 		}
 	}
+	
+	func LoadUI() {
+		LoadCategories()
+		KeyboardNotificationCenter()
+	}
+	
 }
 
 // MARK: - Extension: DateFormatter
