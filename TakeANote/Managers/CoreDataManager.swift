@@ -42,6 +42,17 @@ class CoreDataManager {
 		}
 	}
 	
+	func GetNotesBy(categoryFilter: String)->[NoteEntity] {
+		let notes = GetNotes()
+		var tempNotes = [NoteEntity]()
+		for note in notes {
+			if note.noteCategory == categoryFilter {
+				tempNotes.append(note)
+			}
+		}
+		return tempNotes
+	}
+	
 	func DeleteNote(note: NoteEntity) {
 		GetContext().delete(note)
 		SaveContext()

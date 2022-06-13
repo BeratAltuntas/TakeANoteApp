@@ -137,6 +137,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		selectedNoteType = indexPath.row
+		viewModel.GetNotes(byCategory: HomeViewControllerConstants.noteTypeImageNames[HomeViewControllerConstants.noteTypes[selectedNoteType]] ?? HomeViewControllerConstants.noteTypes.first!)
 		ReloadCollectionView()
 	}
 }

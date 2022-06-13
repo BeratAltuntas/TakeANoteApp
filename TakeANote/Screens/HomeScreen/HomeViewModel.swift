@@ -14,6 +14,7 @@ protocol HomeViewModelProtocol {
 	func LoadUI()
 	func UpdateNotes()
 	func Delete(note: NoteEntity)
+	func GetNotes(byCategory: String)
 }
 
 // MARK: - HomeViewModelDelegate
@@ -45,5 +46,14 @@ extension HomeViewModel: HomeViewModelProtocol {
 	func Delete(note: NoteEntity) {
 		CoreDataManager.shared.DeleteNote(note: note)
 		UpdateNotes()
+	}
+	
+	func GetNotes(byCategory: String) {
+		if byCategory == HomeViewControllerConstants.noteTypes[0] {
+			UpdateNotes()
+		} else {
+		notes = CoreDataManager.shared.GetNotesBy(categoryFilter: byCategory)
+			delegate?.ReloadTableView()
+		}
 	}
 }
