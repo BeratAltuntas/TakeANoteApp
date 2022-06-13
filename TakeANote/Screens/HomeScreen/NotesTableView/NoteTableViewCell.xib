@@ -46,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca0-LO-jMV">
-                        <rect key="frame" x="5" y="51" width="355" height="69"/>
+                        <rect key="frame" x="5" y="51" width="355" height="61.5"/>
                         <string key="text">Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label LabelLabel Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label</string>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                         <nil key="textColor"/>
@@ -60,11 +60,11 @@
                     <constraint firstItem="3P7-9B-Kxd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="6QB-N0-zUi"/>
                     <constraint firstAttribute="trailing" secondItem="hWn-4F-HpD" secondAttribute="trailing" constant="10" id="CRW-yY-DqD"/>
                     <constraint firstItem="l9Y-7z-d0b" firstAttribute="top" secondItem="hWn-4F-HpD" secondAttribute="bottom" constant="2" id="ER2-Ct-Lg2"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ca0-LO-jMV" secondAttribute="bottom" constant="7.5" id="HwO-Ka-f3m"/>
                     <constraint firstItem="l9Y-7z-d0b" firstAttribute="trailing" secondItem="hWn-4F-HpD" secondAttribute="trailing" id="Jg8-VU-GEy"/>
                     <constraint firstItem="hWn-4F-HpD" firstAttribute="leading" secondItem="3P7-9B-Kxd" secondAttribute="trailing" constant="10" id="NAA-gu-BJk"/>
                     <constraint firstItem="l9Y-7z-d0b" firstAttribute="leading" secondItem="hWn-4F-HpD" secondAttribute="leading" id="UQp-QS-1tl"/>
                     <constraint firstItem="ca0-LO-jMV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="vdg-g6-kNh"/>
-                    <constraint firstAttribute="bottom" secondItem="ca0-LO-jMV" secondAttribute="bottom" id="y8p-pY-HP7"/>
                     <constraint firstItem="ca0-LO-jMV" firstAttribute="trailing" secondItem="l9Y-7z-d0b" secondAttribute="trailing" id="zG7-GW-Rh3"/>
                 </constraints>
             </tableViewCellContentView>

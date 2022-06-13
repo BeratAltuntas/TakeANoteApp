@@ -12,6 +12,7 @@ enum HomeViewControllerConstants {
 	static let notePageSegueId = "CreateNoteSegue"
 	static let collectionViewNibName = "NoteTypesCollectionViewCell"
 	static let collectionViewCellId = "CollectionViewNoteTypes"
+	static let tableViewCellHeight: CGFloat = 120
 	static let tableViewCellNibName = "NoteTableViewCell"
 	static let tableViewCellId = "NoteTableViewCell"
 	static let noteTypes = ["Bütün Notlar", "Metin", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
@@ -61,6 +62,9 @@ extension HomeViewController: HomeViewModelDelegate {
 	func SetupCells() {
 		collectionViewNoteTypes.register(UINib(nibName: HomeViewControllerConstants.collectionViewNibName, bundle: nil), forCellWithReuseIdentifier: HomeViewControllerConstants.collectionViewCellId)
 		tableViewNotes.register(UINib(nibName: HomeViewControllerConstants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: HomeViewControllerConstants.tableViewCellId)
+		tableViewNotes.estimatedRowHeight = HomeViewControllerConstants.tableViewCellHeight
+		tableViewNotes.rowHeight = UITableView.automaticDimension
+
 	}
 	
 	func ReloadCollectionView() {
@@ -90,6 +94,7 @@ extension HomeViewController: UITableViewDataSource {
 		if let category = viewModel.notes?[indexPath.row].noteCategory {
 			cell.imageViewKindOfNote.image = UIImage(systemName: category)
 		}
+		cell.labelNoteShortDesc.sizeToFit()
 		return cell
 	}
 	
@@ -105,6 +110,10 @@ extension HomeViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		selectedNote = indexPath.row
 		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
+	}
+	
+	private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return UITableView.automaticDimension
 	}
 }
 
