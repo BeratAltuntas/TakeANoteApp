@@ -175,6 +175,7 @@ extension HomeViewController: UISearchBarDelegate {
 		searchBar.text = .none
 		selectedNoteType = .zero
 		viewModel.UpdateNotes()
+		ReloadCollectionView()
 		searchBar.endEditing(true)
 	}
 }
