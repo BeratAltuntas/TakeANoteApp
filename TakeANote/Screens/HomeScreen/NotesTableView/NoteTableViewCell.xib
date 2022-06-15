@@ -3,9 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,19 +23,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3P7-9B-Kxd">
-                        <rect key="frame" x="5" y="5.5" width="50" height="40"/>
+                        <rect key="frame" x="5" y="5" width="50" height="41"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="41" id="jZe-wg-Op4"/>
                             <constraint firstAttribute="width" constant="50" id="vMg-7y-et5"/>
                         </constraints>
-                        <imageReference key="image" image="text.viewfinder" catalog="system" renderingMode="hierarchical">
-                            <hierarchicalColors>
-                                <color name="AppPurpleColor"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
-                            </hierarchicalColors>
-                        </imageReference>
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="bold"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yazılma tarihi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9Y-7z-d0b">
                         <rect key="frame" x="65" y="26" width="295" height="14"/>
@@ -78,16 +68,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="158.70535714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="text.viewfinder" catalog="system" width="128" height="115"/>
-        <namedColor name="AppPurpleColor">
-            <color red="0.38400000333786011" green="0.45100000500679016" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -11,7 +11,7 @@ enum HomeViewControllerConstants {
 	static let appPurpleColor = "AppPurpleColor"
 	static let notePageSegueId = "CreateNoteSegue"
 	static let noteTypes = ["Bütün Notlar", "Metin", "Hatırlatıcı", "Ses", "Görüntü", "Belge"]
-	static let noteTypeImageNames = ["Metin":"text.viewfinder", "Hatırlatıcı":"bell", "Ses":"music.note", "Görüntü":"photo.on.rectangle.angled", "Belge":"doc"]
+	static let noteTypeImageNames = ["Metin":"text.viewfinder", "Hatırlatıcı":"bell", "Ses":"music.note", "Görüntü":"photo.on.rectangle.angled", "Belge":"doc", "NotYok":"multiply.square"]
 }
 enum UIConstants {
 	static let collectionViewNibName = "NoteTypesCollectionViewCell"
@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
 			viewModel.delegate = self
 		}
 	}
-	
+	var zeroNote = Note()
 	var selectedNoteType: Int = .zero
 	private var selectedNote = -1
 	
@@ -70,7 +70,6 @@ extension HomeViewController: HomeViewModelDelegate {
 		tableViewNotes.register(UINib(nibName: UIConstants.tableViewCellNibName, bundle: nil), forCellReuseIdentifier: UIConstants.tableViewCellId)
 		tableViewNotes.estimatedRowHeight = UIConstants.tableViewCellHeight
 		tableViewNotes.rowHeight = UITableView.automaticDimension
-
 	}
 	
 	func ReloadCollectionView() {
@@ -84,26 +83,42 @@ extension HomeViewController: HomeViewModelDelegate {
 			self?.tableViewNotes.reloadData()
 		}
 	}
+	
+	func FillZeroNote() {
+		zeroNote.noteTitle = "Kayıtlı Note Yok"
+		zeroNote.noteText = "Not bulunamadı."
+		zeroNote.noteCategory = "multiply.square"
+		zeroNote.noteLastEditDate = ""
+	}
 }
 
 // MARK: - Extension: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.notes?.count ?? .zero }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.notes?.count == 0 ? 1 : viewModel.notes?.count ?? 0 }
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: UIConstants.tableViewCellId, for: indexPath)as! NoteTableViewCell
-		cell.labelTitle.text = viewModel.notes?[indexPath.row].noteTitle
-		cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteLastEditDate
-		cell.labelNoteShortDesc.text = viewModel.notes?[indexPath.row].noteText
-		if let category = viewModel.notes?[indexPath.row].noteCategory {
-			cell.imageViewKindOfNote.image = UIImage(systemName: category)
+		if viewModel.notes.count == .zero {
+			cell.labelTitle.text = zeroNote.noteTitle
+			cell.labelCreatingNoteDate.text = zeroNote.noteLastEditDate
+			cell.labelNoteShortDesc.text = zeroNote.noteText
+			if let category = zeroNote.noteCategory {
+				cell.imageViewKindOfNote.image = UIImage(systemName: category)
+			}
+		} else {
+			cell.labelTitle.text = viewModel.notes?[indexPath.row].noteTitle
+			cell.labelCreatingNoteDate.text = viewModel.notes?[indexPath.row].noteLastEditDate
+			cell.labelNoteShortDesc.text = viewModel.notes?[indexPath.row].noteText
+			if let category = viewModel.notes?[indexPath.row].noteCategory {
+				cell.imageViewKindOfNote.image = UIImage(systemName: category)
+			}
 		}
 		cell.labelNoteShortDesc.sizeToFit()
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-		if editingStyle == .delete {
+		if editingStyle == .delete && viewModel.notes.count != .zero{
 			viewModel.Delete(note: viewModel.notes![indexPath.row])
 		}
 	}
@@ -112,8 +127,10 @@ extension HomeViewController: UITableViewDataSource {
 // MARK: - Extension: UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		selectedNote = indexPath.row
-		performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
+		if viewModel.notes.count != .zero {
+			selectedNote = indexPath.row
+			performSegue(withIdentifier: HomeViewControllerConstants.notePageSegueId, sender: self)
+		}
 	}
 	
 	private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -150,6 +167,9 @@ extension HomeViewController: UICollectionViewDelegate {
 extension HomeViewController: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		viewModel.FetchNotes(byText: searchText.lowercased())
+		if viewModel.notes.count == .zero {
+			
+		}
 	}
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.text = .none

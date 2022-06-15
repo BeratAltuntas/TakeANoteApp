@@ -23,6 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
 	var selectedNoteType: Int { get set }
 	
 	func SetupCells()
+	func FillZeroNote()
 	func ReloadCollectionView()
 	func ReloadTableView()
 }
@@ -36,8 +37,8 @@ final class HomeViewModel {
 // MARK: - Extension: HomeViewModelProtocol
 extension HomeViewModel: HomeViewModelProtocol {
 	func LoadUI() {
+		delegate?.FillZeroNote()
 		delegate?.SetupCells()
-		UpdateNotes()
 	}
 	
 	func UpdateNotes() {
@@ -67,7 +68,7 @@ extension HomeViewModel: HomeViewModelProtocol {
 			UpdateNotes()
 		} else {
 			notes = CoreDataManager.shared.GetNotesBy(text: byText)
+			delegate?.ReloadTableView()
 		}
-		delegate?.ReloadTableView()
 	}
 }
