@@ -37,10 +37,10 @@ final class NoteDetailViewController: UIViewController {
 		}
 		pickerButtonNoteCategory.menu = UIMenu(children: [
 			UIAction(title: HomeViewControllerConstants.noteTypes[1], state: .on, handler: optionsClosure),
-			UIAction(title: HomeViewControllerConstants.noteTypes[2], handler: optionsClosure),
-			UIAction(title: HomeViewControllerConstants.noteTypes[3], handler: optionsClosure),
-			UIAction(title: HomeViewControllerConstants.noteTypes[4], handler: optionsClosure),
-			UIAction(title: HomeViewControllerConstants.noteTypes[5], handler: optionsClosure)
+			UIAction(title: HomeViewControllerConstants.noteTypes[2], state: .off, handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[3], state: .off, handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[4], state: .off, handler: optionsClosure),
+			UIAction(title: HomeViewControllerConstants.noteTypes[5], state: .off, handler: optionsClosure)
 		])
 	}
 	
@@ -53,8 +53,14 @@ final class NoteDetailViewController: UIViewController {
 	func LoadSelectedNote() {
 		textFieldNoteTitle.text = selectedNote!.noteTitle
 		textViewNote.text = selectedNote!.noteText!
-		pickerButtonNoteCategory.titleLabel?.text = selectedNote!.noteCategory
+		for (index, pickerButton) in pickerButtonNoteCategory.menu!.children.enumerated() {
+			if HomeViewControllerConstants.noteTypeImageNames[pickerButton.title] == selectedNote!.noteCategory! {
+				let picker = pickerButtonNoteCategory.menu!.children[index] as! UIAction
+				picker.state = .on
+			}
+		}
 		labelNoteDate.text = selectedNote!.noteLastEditDate
+		
 	}
 	
 	func GetUITexts()-> Note? {
