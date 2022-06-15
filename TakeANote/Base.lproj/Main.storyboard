@@ -64,7 +64,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rM-OO-lr6">
-                                <rect key="frame" x="250" y="792" width="154" height="55"/>
+                                <rect key="frame" x="278.5" y="792" width="125.5" height="55"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" cornerStyle="capsule">
                                     <attributedString key="attributedTitle">
@@ -102,7 +102,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0rM-OO-lr6" firstAttribute="top" secondItem="sek-Da-FT4" secondAttribute="bottom" constant="-70" id="2hm-hW-7Pb"/>
-                            <constraint firstItem="0rM-OO-lr6" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sek-Da-FT4" secondAttribute="leading" constant="240" id="8dH-LK-eKG"/>
+                            <constraint firstItem="0rM-OO-lr6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sek-Da-FT4" secondAttribute="leading" constant="240" id="8dH-LK-eKG"/>
                             <constraint firstItem="Fkw-Zg-rHz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="BlF-Pd-REN"/>
                             <constraint firstItem="aTm-Nf-oUX" firstAttribute="top" secondItem="nqz-Nz-NI0" secondAttribute="bottom" constant="5" id="GGb-OL-Orp"/>
                             <constraint firstItem="0rM-OO-lr6" firstAttribute="bottom" secondItem="sek-Da-FT4" secondAttribute="bottom" constant="-15" id="KNf-YA-BAw"/>
