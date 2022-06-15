@@ -57,15 +57,21 @@ final class NoteDetailViewController: UIViewController {
 		labelNoteDate.text = selectedNote!.noteLastEditDate
 	}
 	
-	func GetUITexts()-> Note {
+	func GetUITexts()-> Note? {
 		let date = DateFormatter().DateFormatNowTR()
 		let category = HomeViewControllerConstants.noteTypeImageNames[pickerButtonNoteCategory.titleLabel!.text!]
-		var note = Note()
-		note.noteTitle = textFieldNoteTitle.text!
-		note.noteText = textViewNote.text!
-		note.noteCategory = category
-		note.noteLastEditDate = date
-		return note
+		if let title = textFieldNoteTitle.text,
+		   let text = textViewNote.text,
+		   !text.isEmpty || !title.isEmpty {
+			var note = Note()
+			note.noteTitle = title
+			note.noteText = text
+			note.noteCategory = category
+			note.noteLastEditDate = date
+			return note
+			
+		}
+		return nil
 	}
 	
 	@IBAction func TurnBackPage_TUI(_ sender: Any) {
@@ -77,7 +83,9 @@ final class NoteDetailViewController: UIViewController {
 			viewModel.Delete(note: selectedNote!)
 		}
 		let note = GetUITexts()
-		viewModel.SaveNote(note: note)
+		if note != nil {
+			viewModel.SaveNote(note: note!)
+		}
 		DissmissThePage()
 	}
 	
